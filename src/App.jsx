@@ -213,9 +213,9 @@ function HomePage() {
         <header className="main-header wts-main-header" data-reveal>
           <h1>
             <strong>
-              Local People.
+              Local People
               <br />
-              <span>Local Solutions.</span>
+              <span>Local Solutions</span>
             </strong>
           </h1>
         </header>
