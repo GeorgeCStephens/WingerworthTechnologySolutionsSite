@@ -461,9 +461,6 @@ function App() {
           <div className="curtain-panel" />
           <div className="curtain-panel" />
           <div className="curtain-panel" />
-          <div className="curtain-logo">
-            <img src="/wingerworth-code-logo.png" alt="" />
-          </div>
         </div>
       )}
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
