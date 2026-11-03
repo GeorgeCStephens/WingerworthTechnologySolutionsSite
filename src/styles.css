@@ -71,6 +71,7 @@ button {
 }
 
 .main-links-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,12 +80,66 @@ button {
   min-height: 4rem;
 }
 
+.back-control {
+  display: grid;
+  flex: 0 0 auto;
+  justify-items: center;
+  gap: 0.1rem;
+  color: var(--muted);
+}
+
+.back-button {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.back-button:hover {
+  transform: translateX(-2px);
+  color: var(--orange);
+}
+
+.back-button:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.back-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.back-caption {
+  max-width: 5rem;
+  overflow: hidden;
+  color: var(--subtle);
+  font-size: 0.62rem;
+  line-height: 1.2;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .img-menu-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.7rem;
   height: 2.7rem;
+  transform: translate(-50%, -50%);
   color: #f1f4f7;
 }
 
@@ -1644,7 +1699,7 @@ button {
   }
 
   .brand-logo {
-    width: clamp(10rem, 57vw, 15rem);
+    width: clamp(8rem, 42vw, 11rem);
   }
 
   .main-links-wrapper {

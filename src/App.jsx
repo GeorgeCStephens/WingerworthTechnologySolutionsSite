@@ -1,12 +1,26 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import {
+  Link,
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+  useLocation,
+  useNavigationType,
+  useNavigate,
+} from "react-router-dom";
 import stagIllustration from "../wingerworth-stag.svg";
 
 const businessEmail = "";
 const pageTitles = {
   "/": "Wingerworth Technology Solutions | Local People. Local Solutions.",
   "/about": "About us | Wingerworth Technology Solutions",
-  "/work": "Some of our work | Wingerworth Technology Solutions",
+  "/portfolio": "Portfolio | Wingerworth Technology Solutions",
+};
+const pageLabels = {
+  "/": "Home",
+  "/about": "About us",
+  "/portfolio": "Portfolio",
 };
 
 function Arrow() {
@@ -46,8 +60,64 @@ function Reveal({ children, className = "", delay = 0 }) {
 
 function Header({ menuOpen, setMenuOpen }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const navigationType = useNavigationType();
+  const lastPath = useRef(location.pathname);
+  const pathHistory = useRef([]);
+  const [previousPath, setPreviousPath] = useState(null);
 
-  useEffect(() => setMenuOpen(false), [location.pathname, location.hash, setMenuOpen]);
+  useEffect(() => {
+    setMenuOpen(false);
+    if (location.pathname !== lastPath.current) {
+      const currentPath = location.pathname;
+      const backNavigation = location.state?.__backNavigation === true;
+
+      if (backNavigation) {
+        pathHistory.current.pop();
+      } else if (navigationType === "PUSH") {
+        if (lastPath.current !== "/work") {
+          pathHistory.current.push(lastPath.current);
+        }
+      } else if (navigationType === "POP") {
+        const history = pathHistory.current;
+        if (history[history.length - 1] === currentPath) {
+          history.pop();
+        } else if (lastPath.current !== "/work") {
+          history.push(lastPath.current);
+        }
+      }
+
+      lastPath.current = currentPath;
+      setPreviousPath(pathHistory.current[pathHistory.current.length - 1] ?? null);
+    }
+  }, [
+    location.pathname,
+    location.hash,
+    location.state,
+    navigationType,
+    setMenuOpen,
+  ]);
+
+  const backLabel = previousPath ? pageLabels[previousPath] : "";
+
+  function handleNavigation(event, destination) {
+    setMenuOpen(false);
+    const target = new URL(destination, window.location.origin);
+    if (
+      location.pathname === target.pathname &&
+      location.hash === target.hash
+    ) {
+      event.preventDefault();
+      if (target.hash) {
+        document.querySelector(target.hash)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  }
 
   return (
     <>
@@ -60,15 +130,34 @@ function Header({ menuOpen, setMenuOpen }) {
             <nav className="main__nav" aria-label="Main navigation">
               <div className="links_group">
                 <h2>EXPLORE</h2>
-                <NavLink end to="/">
+                <NavLink
+                  end
+                  to="/"
+                  onClick={(event) => handleNavigation(event, "/")}
+                >
                   Home
                 </NavLink>
-                <NavLink to="/work">Portfolio</NavLink>
-                <Link to="/#contact">Get in touch</Link>
+                <NavLink
+                  to="/portfolio"
+                  onClick={(event) => handleNavigation(event, "/portfolio")}
+                >
+                  Portfolio
+                </NavLink>
+                <Link
+                  to="/#contact"
+                  onClick={(event) => handleNavigation(event, "/#contact")}
+                >
+                  Get in touch
+                </Link>
               </div>
               <div className="links_group">
                 <h2>WHO WE ARE</h2>
-                <NavLink to="/about">About us</NavLink>
+                <NavLink
+                  to="/about"
+                  onClick={(event) => handleNavigation(event, "/about")}
+                >
+                  About us
+                </NavLink>
               </div>
             </nav>
           </div>
@@ -76,6 +165,25 @@ function Header({ menuOpen, setMenuOpen }) {
       </div>
       <header className="site-header">
         <div className="main-links-wrapper">
+          {previousPath && (
+            <div className="back-control">
+              <button
+                className="back-button"
+                type="button"
+                aria-label={`Go back to ${backLabel}`}
+                onClick={() =>
+                  navigate(previousPath, {
+                    state: { __backNavigation: true },
+                  })
+                }
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                  <path d="M19 12H5m0 0 7 7m-7-7 7-7" />
+                </svg>
+              </button>
+              <span className="back-caption">{backLabel}</span>
+            </div>
+          )}
           <Link className="img-menu-link" to="/" aria-label="Wingerworth Technology Solutions home">
             <Logo />
           </Link>
@@ -214,7 +322,7 @@ function HomePage() {
             <strong className="local-page-heading">
               Local People
               <br />
-              <span>Local Stories</span>
+              <span>Local Solutions</span>
             </strong>
           </h1>
         </header>
@@ -237,7 +345,7 @@ function HomePage() {
                 straightforward advice from people close to home.
               </p>
               <div className="btn-wrapper">
-                <Link className="btn addHover" to="/work">
+                <Link className="btn addHover" to="/portfolio">
                   See some of our work
                 </Link>
                 <Link className="btn addHover" to="/about">
@@ -330,9 +438,9 @@ function WorkPage() {
       <section className="page-hero work-hero" data-reveal>
         <p className="eyebrow">Some of our work</p>
         <h1 className="local-page-heading">
-          Local Problems
+          Local Problems 
           <br />
-          <span>Local Solutions</span>
+          <span>Local Stories</span>
         </h1>
         <p className="page-lead">
           A few examples of the challenges we help derbyshire-based businesses solve.
@@ -467,7 +575,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/work" element={<WorkPage />} />
+        <Route path="/portfolio" element={<WorkPage />} />
+        <Route path="/work" element={<Navigate to="/portfolio" replace />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
       <Footer />
