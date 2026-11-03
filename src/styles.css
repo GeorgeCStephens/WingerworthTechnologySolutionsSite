@@ -1552,6 +1552,16 @@ button {
 
 .work-contact .button {
   margin-top: 0.8rem;
+  min-height: 3.5rem;
+  padding-inline: 1.5rem;
+  border: 1px solid var(--orange);
+  background: var(--orange);
+  box-shadow: 0 0 1.4rem rgba(243, 107, 19, 0.2);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .footer-brand .brand-logo-footer {

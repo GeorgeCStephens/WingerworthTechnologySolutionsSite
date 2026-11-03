@@ -314,14 +314,14 @@ const portfolioItems = [
   {
     number: "02",
     type: "PROJECT PLACEHOLDER",
-    title: "A smarter way to work",
-    category: "Cloud & collaboration",
+    title: "Local business project",
+    category: "Technology & infrastructure",
   },
   {
     number: "03",
     type: "PROJECT PLACEHOLDER",
-    title: "Technology that grows",
-    category: "Support & modernisation",
+    title: "Local business project",
+    category: "Technology & infrastructure",
   },
 ];
 
