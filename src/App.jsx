@@ -63,7 +63,7 @@ function Header({ menuOpen, setMenuOpen }) {
                 <NavLink end to="/">
                   Home
                 </NavLink>
-                <NavLink to="/work">Some of our work</NavLink>
+                <NavLink to="/work">Portfolio</NavLink>
                 <Link to="/#contact">Get in touch</Link>
               </div>
               <div className="links_group">
@@ -268,8 +268,8 @@ function AboutPage() {
           <span>starts with people.</span>
         </h1>
         <p className="page-lead">
-          We’re Josh and George. We started Wingerworth Technology Solutions to
-          make enterprise-grade technology feel accessible to the businesses
+          Wingerworth Technology Solutions was founded to
+          make enterprise-grade technology accessible to the businesses
           that make our community what it is.
         </p>
       </section>
@@ -330,13 +330,13 @@ function WorkPage() {
       <section className="page-hero work-hero" data-reveal>
         <p className="eyebrow">Some of our work</p>
         <h1>
-          Good work.
+          Local Problems
           <br />
-          <span>Good people.</span>
+          <span>Local Solutions</span>
         </h1>
         <p className="page-lead">
-          A few examples of the challenges we help local businesses solve.
-          We’re getting our portfolio ready — project details coming soon.
+          A few examples of the challenges we help derbyshire-based businesses solve.
+          We’re getting our portfolio ready - project details coming soon.
         </p>
       </section>
       <section className="portfolio-section" aria-label="Portfolio placeholders">
