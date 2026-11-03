@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1000">
+  <rect width="700" height="1000" fill="#171716"/>
+  <g stroke="#171716" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Geometric antlers -->
+    <g fill="#f36b13" stroke-width="12">
+      <path d="M321 457 269 424 215 379 158 320 117 258 82 183 49 103 20 24 65 96 75 29 92 126 145 210 193 274 243 326 297 369 332 403Z"/>
+      <path d="m292 401-45-49-34-66-31-80-21-83 40 77 19-64 4 100 41 71 50 53Z"/>
+      <path d="m258 367-55-39-50-58-36-66-20-78 35 62 29-51-7 77 41 62 62 47Z"/>
+      <path d="m231 337-63-14-62-35-48-49-31-60 48 43 40-30-24 55 54 46 91 15Z"/>
+      <path d="m379 457 52-33 54-45 57-59 41-62 35-75 33-80 29-79-45 72-10-67-17 97-53 84-48 64-50 52-54 43-35 34Z"/>
+      <path d="m408 401 45-49 34-66 31-80 21-83-40 77-19-64-4 100-41 71-50 53Z"/>
+      <path d="m442 367 55-39 50-58 36-66 20-78-35 62-29-51 7 77-41 62-62 47Z"/>
+      <path d="m469 337 63-14 62-35 48-49 31-60-48 43-40-30 24 55-54 46-91 15Z"/>
+    </g>
+    <g fill="#b94e15" stroke-width="7">
+      <path d="m103 77 14 181 34 66 44 43-42-68-24-87Z"/>
+      <path d="m180 178 31 108 34 66 43 42-49-67-31-74Z"/>
+      <path d="m62 209 58 86 55 54-43-56-43-65Z"/>
+      <path d="m597 77-14 181-34 66-44 43 42-68 24-87Z"/>
+      <path d="m520 178-31 108-34 66-43 42 49-67 31-74Z"/>
+      <path d="m638 209-58 86-55 54 43-56 43-65Z"/>
+    </g>
+    <!-- Ears -->
+    <path d="m283 430-107-79-94-31 42 107 110 67 52-12Z" fill="#f36b13" stroke-width="14"/>
+    <path d="m417 430 107-79 94-31-42 107-110 67-52-12Z" fill="#f36b13" stroke-width="14"/>
+    <path d="m267 438-91-61-62-24 31 62 86 53 39-4Z" fill="#b94e15" stroke-width="7"/>
+    <path d="m433 438 91-61 62-24-31 62-86 53-39-4Z" fill="#b94e15" stroke-width="7"/>
+    <!-- Head silhouette and angular planes -->
+    <path d="m277 398 47 20h52l47-20 58 45-14 107-42 120-75 92-75-92-42-120-14-107Z" fill="#f36b13" stroke-width="16"/>
+    <path d="m277 398 47 20-12 73-64-40-29-8Z" fill="#d95d13" stroke-width="7"/>
+    <path d="m423 398-47 20 12 73 64-40 29-8Z" fill="#d95d13" stroke-width="7"/>
+    <path d="m248 451 64 40-14 86-63-61Z" fill="#f98a2c" stroke-width="7"/>
+    <path d="m452 451-64 40 14 86 63-61Z" fill="#f98a2c" stroke-width="7"/>
+    <path d="m298 577 14-86 38 29 38-29 14 86-52 46Z" fill="#b94e15" stroke-width="8"/>
+    <path d="m312 491 38 29v103l-52-46Z" fill="#f36b13" stroke-width="6"/>
+    <path d="m388 491-38 29v103l52-46Z" fill="#e66a17" stroke-width="6"/>
+    <path d="m260 553 52 38-17 87-45-78Z" fill="#d95d13" stroke-width="7"/>
+    <path d="m440 553-52 38 17 87 45-78Z" fill="#d95d13" stroke-width="7"/>
+    <path d="m250 600 45 78 55 67-76-40-45-78Z" fill="#b94e15" stroke-width="7"/>
+    <path d="m450 600-45 78-55 67 76-40 45-78Z" fill="#b94e15" stroke-width="7"/>
+    <path d="m295 678 55 67 55-67-14 101-41 87-41-87Z" fill="#f36b13" stroke-width="9"/>
+    <path d="m295 678 55 67v101l-41-87Z" fill="#d95d13" stroke-width="6"/>
+    <path d="m405 678-55 67v101l41-87Z" fill="#a84313" stroke-width="6"/>
+    <path d="m309 769 41 77 41-77-41 197Z" fill="#f36b13" stroke-width="9"/>
+    <path d="m309 769 41 77v120l-41-197Z" fill="#b94e15" stroke-width="5"/>
+    <path d="m391 769-41 77v120l41-197Z" fill="#d95d13" stroke-width="5"/>
+    <!-- Brows and eyes -->
+    <path d="m242 487 49 14 27 33-23 26-38-11-25-31Z" fill="#171716" stroke-width="8"/>
+    <path d="m458 487-49 14-27 33 23 26 38-11 25-31Z" fill="#171716" stroke-width="8"/>
+    <path d="m247 500 42 12 21 24-20 13-34-10-18-23Z" fill="#f36b13" stroke-width="4"/>
+    <path d="m453 500-42 12-21 24 20 13 34-10 18-23Z" fill="#f36b13" stroke-width="4"/>
+    <path d="m276 525 25 8-10 11-20-6Z" fill="#171716" stroke-width="3"/>
+    <path d="m424 525-25 8 10 11 20-6Z" fill="#171716" stroke-width="3"/>
+    <!-- Muzzle -->
+    <path d="m321 574 29 12 29-12 30 33-12 47-47 22-47-22-12-47Z" fill="#f98a2c" stroke-width="9"/>
+    <path d="m321 574 29 12v68l-47-22-12-47Z" fill="#d95d13" stroke-width="5"/>
+    <path d="m379 574-29 12v68l47-22 12-47Z" fill="#b94e15" stroke-width="5"/>
+    <path d="m314 604 36-13 36 13-7 28-29 15-29-15Z" fill="#171716" stroke-width="7"/>
+    <path d="m329 606 21-7 21 7-5 12-16 7-16-7Z" fill="#f36b13" stroke-width="4"/>
+    <path d="m328 644 22 7 22-7-8 18-14 8-14-8Z" fill="#171716" stroke-width="5"/>
+  </g>
+</svg>
