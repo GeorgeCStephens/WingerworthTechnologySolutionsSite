@@ -211,10 +211,10 @@ function HomePage() {
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
         <header className="main-header wts-main-header" data-reveal>
           <h1>
-            <strong>
+            <strong className="local-page-heading">
               Local People
               <br />
-              <span>Local Solutions</span>
+              <span>Local Stories</span>
             </strong>
           </h1>
         </header>
@@ -262,10 +262,10 @@ function AboutPage() {
     <main className="page-content inner-page" id="main">
       <section className="page-hero" data-reveal>
         <p className="eyebrow">Local people, working alongside you</p>
-        <h1>
-          Good technology
+        <h1 className="local-page-heading">
+          Local Now 
           <br />
-          <span>starts with people.</span>
+          <span>Local Forever</span>
         </h1>
         <p className="page-lead">
           Wingerworth Technology Solutions was founded to
@@ -329,7 +329,7 @@ function WorkPage() {
     <main className="page-content inner-page work-page" id="main">
       <section className="page-hero work-hero" data-reveal>
         <p className="eyebrow">Some of our work</p>
-        <h1>
+        <h1 className="local-page-heading">
           Local Problems
           <br />
           <span>Local Solutions</span>

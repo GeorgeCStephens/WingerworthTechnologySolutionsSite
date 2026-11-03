@@ -1736,3 +1736,19 @@ button {
     width: 13rem;
   }
 }
+
+.wts-main-header h1 > strong.local-page-heading,
+.page-hero h1.local-page-heading {
+  font-family: Impact, "Arial Narrow", system-ui, sans-serif;
+  font-size: clamp(2.55rem, 11.2vw, 11.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.wts-main-header h1 > strong.local-page-heading span,
+.page-hero h1.local-page-heading span {
+  color: var(--orange);
+}
