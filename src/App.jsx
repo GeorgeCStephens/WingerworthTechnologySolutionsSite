@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
-import stagIllustration from "../chesterfield-stag.svg";
+import stagIllustration from "../wingerworth-stag.svg";
 
-// Set this when the business inbox is ready; the form then opens a prefilled email.
 const businessEmail = "";
 const pageTitles = {
   "/": "Wingerworth Technology Solutions | Local People. Local Solutions.",
@@ -23,72 +22,21 @@ function Arrow() {
   );
 }
 
-// Shared Crooked Spire code-bracket mark for the header and footer.
-function LogoMark() {
+function Logo({ footer = false }) {
   return (
-    <span className="brand-symbol" aria-hidden="true">
-      <svg viewBox="0 0 40 36">
-        <path d="m10.5 5-6.5 10 6.5 8.5m19-18.5 6.5 10-6.5 8.5" />
-        <image
-          href="/crooked-spire-mark.png"
-          x="14"
-          y="1"
-          width="12"
-          height="34"
-          preserveAspectRatio="xMidYMid meet"
-        />
-      </svg>
-    </span>
+    <img
+      className={`brand-logo ${footer ? "brand-logo-footer" : ""}`}
+      src="/wingerworth-technology-solutions-logo.png"
+      alt="Wingerworth Technology Solutions"
+    />
   );
 }
 
-function ScrollManager() {
-  const { pathname, hash } = useLocation();
-
-  useEffect(() => {
-    // Keep in-page contact links working when navigation changes the route.
-    if (hash) {
-      requestAnimationFrame(() => {
-        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
-      });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [pathname, hash]);
-
-  return null;
-}
-
 function Reveal({ children, className = "", delay = 0 }) {
-  const [visible, setVisible] = useState(false);
-  const revealRef = useRef(null);
-
-  useEffect(() => {
-    const node = revealRef.current;
-    // Show content immediately on browsers without IntersectionObserver.
-    if (!node || !("IntersectionObserver" in window)) {
-      setVisible(true);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 },
-    );
-    observer.observe(node);
-
-    return () => observer.disconnect();
-  }, [delay]);
-
   return (
     <div
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`.trim()}
-      ref={revealRef}
+      className={`reveal ${className}`.trim()}
+      data-reveal
       style={{ "--reveal-delay": `${delay}ms` }}
     >
       {children}
@@ -96,85 +44,56 @@ function Reveal({ children, className = "", delay = 0 }) {
   );
 }
 
-function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Header({ menuOpen, setMenuOpen }) {
   const location = useLocation();
 
-  // Close the mobile menu after every route or in-page navigation.
-  useEffect(() => setMenuOpen(false), [location.pathname, location.hash]);
+  useEffect(() => setMenuOpen(false), [location.pathname, location.hash, setMenuOpen]);
 
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <Link
-          className="brand"
-          to="/"
-          aria-label="Wingerworth Technology Solutions home"
-        >
-          <LogoMark />
-          <span className="brand-copy">
-            <strong>Wingerworth</strong>
-            <span>Technology Solutions</span>
-          </span>
-        </Link>
-
-        <button
-          className={`menu-toggle ${menuOpen ? "is-open" : ""}`}
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="primary-nav"
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-        </button>
-
-        <nav
-          className={`main-nav ${menuOpen ? "is-open" : ""}`}
-          id="primary-nav"
-          aria-label="Main navigation"
-        >
-          <NavLink
-            end
-            to="/"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            About us
-          </NavLink>
-          <NavLink
-            to="/work"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Some of our work
-          </NavLink>
-          <Link className="nav-cta" to="/#contact">
-            Get in touch <Arrow />
-          </Link>
-        </nav>
+    <>
+      <div className={`menu-wrapper ${menuOpen ? "is-open" : ""}`}>
+        <div className="main-nav-wrapper">
+          <div className="main-navigation">
+            <div className="menu-header">
+              <span className="menu_title">WINGERWORTH TECHNOLOGY SOLUTIONS</span>
+            </div>
+            <nav className="main__nav" aria-label="Main navigation">
+              <div className="links_group">
+                <h2>EXPLORE</h2>
+                <NavLink end to="/">
+                  Home
+                </NavLink>
+                <NavLink to="/work">Some of our work</NavLink>
+                <Link to="/#contact">Get in touch</Link>
+              </div>
+              <div className="links_group">
+                <h2>WHO WE ARE</h2>
+                <NavLink to="/about">About us</NavLink>
+                <NavLink to="/about">Our approach</NavLink>
+              </div>
+            </nav>
+          </div>
+        </div>
       </div>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="site-footer">
-      <Link className="footer-brand" to="/">
-        <LogoMark />
-        <span>Wingerworth Technology Solutions</span>
-      </Link>
-      <span className="footer-slogan">Local People. Local Solutions.</span>
-      <span className="footer-year">
-        © {new Date().getFullYear()} Wingerworth Technology Solutions
-      </span>
-    </footer>
+      <header className="site-header">
+        <div className="main-links-wrapper">
+          <Link className="img-menu-link" to="/" aria-label="Wingerworth Technology Solutions home">
+            <Logo />
+          </Link>
+          <button
+            className={`mobile-nav-trigger ${menuOpen ? "is-open" : ""}`}
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="hamburger-line top" />
+            <span className="hamburger-line mid" />
+            <span className="hamburger-line bot" />
+          </button>
+        </div>
+      </header>
+    </>
   );
 }
 
@@ -193,7 +112,6 @@ function ContactSection() {
       return;
     }
 
-    // Build a mailto URL instead of sending form data to a server.
     const data = new FormData(form);
     const subject = `Website enquiry from ${data.get("name")}`;
     const body = [
@@ -223,7 +141,7 @@ function ContactSection() {
             friendly, no-pressure chat.
           </p>
         </Reveal>
-        <Reveal className="contact-form-wrap" delay={100}>
+        <Reveal className="contact-form-wrap" delay={110}>
           <form className="contact-form" onSubmit={handleSubmit}>
             <label>
               <span>Your name</span>
@@ -271,96 +189,70 @@ function ContactSection() {
   );
 }
 
+function Footer() {
+  return (
+    <footer className="site-footer wts-footer">
+      <Link className="footer-brand" to="/">
+        <Logo footer />
+      </Link>
+      <span className="footer-slogan">Local People. Local Solutions.</span>
+      <span className="footer-year">
+        © {new Date().getFullYear()} Wingerworth Technology Solutions
+      </span>
+    </footer>
+  );
+}
+
 function HomePage() {
   return (
-    <main id="main">
-      <section className="hero" aria-labelledby="hero-title">
+    <main className="page-content" id="main">
+      <section className="hero-panel wts-hero">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
-        <img
-          className="hero-art"
-          src={stagIllustration}
-          alt=""
-          aria-hidden="true"
-        />
-        <div className="hero-shade" aria-hidden="true" />
-        <div className="hero-content">
-          <p className="hero-kicker">
-            <span />
-            Independent technology partner · Chesterfield
-          </p>
-          <h1 id="hero-title">
-            Local People.
-            <br />
-            <span>Local Solutions.</span>
+        <header className="main-header wts-main-header" data-reveal>
+          <h1>
+            <strong>
+              Local People.
+              <br />
+              <span>Local Solutions.</span>
+            </strong>
           </h1>
-          <p className="hero-intro">
-            Enterprise technology for local business. Practical, personal and
-            priced for the way you work.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" to="/work">
-              See some of our work <Arrow />
-            </Link>
-            <Link className="text-link" to="/about">
-              Get to know us <Arrow />
-            </Link>
-          </div>
-          <div className="hero-proof">
-            <span className="proof-dot" />
-            <span>Local expertise. Straightforward advice.</span>
+        </header>
+        <div className="slider-wrapper wts-slider" data-reveal>
+          <img
+            className="slider-media wts-stag"
+            src={stagIllustration}
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="slider-text">
+            <section className="slider-article">
+              <h2>
+                <em>Enterprise technology</em>
+                <strong>for local business.</strong>
+              </h2>
+              <p>
+                Practical, personal and priced for the way you work. We help
+                local businesses make technology work harder — with
+                straightforward advice from people close to home.
+              </p>
+              <div className="btn-wrapper">
+                <Link className="btn addHover" to="/work">
+                  See some of our work
+                </Link>
+                <Link className="btn addHover" to="/about">
+                  Get to know us
+                </Link>
+              </div>
+              <div className="slider-copyright-text">
+                <p>Local expertise. Straightforward advice.</p>
+              </div>
+            </section>
           </div>
         </div>
       </section>
 
-      <section className="intro-section" id="intro">
-        <Reveal className="intro-heading">
-          <p className="eyebrow">Technology should move you forward</p>
-          <h2>
-            Big capability.
-            <br />
-            <span>Right-sized for you.</span>
-          </h2>
-          <p>
-            The right tools make all the difference. We help local businesses
-            find and use technology that saves time, supports their people and
-            makes the day-to-day run better.
-          </p>
-        </Reveal>
-        <div className="intro-links">
-          <Reveal>
-            <Link className="feature-link" to="/about">
-              <span className="feature-index">01</span>
-              <span>
-                <strong>People first</strong>
-                <small>Know who you’re working with</small>
-              </span>
-              <Arrow />
-            </Link>
-          </Reveal>
-          <Reveal delay={90}>
-            <Link className="feature-link" to="/work">
-              <span className="feature-index">02</span>
-              <span>
-                <strong>Built around your business</strong>
-                <small>Technology that fits your goals</small>
-              </span>
-              <Arrow />
-            </Link>
-          </Reveal>
-          <Reveal delay={180}>
-            <Link className="feature-link" to="/#contact">
-              <span className="feature-index">03</span>
-              <span>
-                <strong>Support that stays local</strong>
-                <small>Clear advice, close to home</small>
-              </span>
-              <Arrow />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
       <ContactSection />
     </main>
   );
@@ -368,21 +260,19 @@ function HomePage() {
 
 function AboutPage() {
   return (
-    <main id="main" className="inner-page">
-      <section className="page-hero">
-        <Reveal>
-          <p className="eyebrow">Local people, working alongside you</p>
-          <h1>
-            Good technology
-            <br />
-            <span>starts with people.</span>
-          </h1>
-          <p className="page-lead">
-            We’re Josh and George. We started Wingerworth Technology Solutions
-            to make enterprise-grade technology feel accessible to the
-            businesses that make our community what it is.
-          </p>
-        </Reveal>
+    <main className="page-content inner-page" id="main">
+      <section className="page-hero" data-reveal>
+        <p className="eyebrow">Local people, working alongside you</p>
+        <h1>
+          Good technology
+          <br />
+          <span>starts with people.</span>
+        </h1>
+        <p className="page-lead">
+          We’re Josh and George. We started Wingerworth Technology Solutions to
+          make enterprise-grade technology feel accessible to the businesses
+          that make our community what it is.
+        </p>
       </section>
       <section className="about-detail">
         <Reveal className="about-statement">
@@ -393,7 +283,7 @@ function AboutPage() {
             <span>A fraction of the cost.</span>
           </h2>
         </Reveal>
-        <Reveal className="about-detail-copy" delay={100}>
+        <Reveal className="about-detail-copy" delay={110}>
           <p className="about-lead">
             Local businesses deserve access to the same smart technology as the
             big players, without paying for a team or setup they don’t need.
@@ -414,7 +304,6 @@ function AboutPage() {
   );
 }
 
-// These clearly marked cards are placeholders until real client work is approved.
 const portfolioItems = [
   {
     number: "01",
@@ -438,27 +327,25 @@ const portfolioItems = [
 
 function WorkPage() {
   return (
-    <main id="main" className="inner-page work-page">
-      <section className="page-hero work-hero">
-        <Reveal>
-          <p className="eyebrow">Some of our work</p>
-          <h1>
-            Good work.
-            <br />
-            <span>Good people.</span>
-          </h1>
-          <p className="page-lead">
-            A few examples of the challenges we help local businesses solve.
-            We’re getting our portfolio ready — project details coming soon.
-          </p>
-        </Reveal>
+    <main className="page-content inner-page work-page" id="main">
+      <section className="page-hero work-hero" data-reveal>
+        <p className="eyebrow">Some of our work</p>
+        <h1>
+          Good work.
+          <br />
+          <span>Good people.</span>
+        </h1>
+        <p className="page-lead">
+          A few examples of the challenges we help local businesses solve.
+          We’re getting our portfolio ready — project details coming soon.
+        </p>
       </section>
       <section className="portfolio-section" aria-label="Portfolio placeholders">
         <div className="portfolio-grid">
           {portfolioItems.map((item, index) => (
             <Reveal
               className="portfolio-card"
-              delay={index * 100}
+              delay={index * 110}
               key={item.number}
             >
               <div
@@ -479,35 +366,108 @@ function WorkPage() {
           ))}
         </div>
       </section>
-      <section className="work-contact">
-        <Reveal>
-          <p className="eyebrow">Have a project in mind?</p>
-          <h2>
-            Your business could
-            <br />
-            <span>be next.</span>
-          </h2>
-          <Link className="button button-primary" to="/#contact">
-            Start a conversation <Arrow />
-          </Link>
-        </Reveal>
+      <section className="work-contact" data-reveal>
+        <p className="eyebrow">Have a project in mind?</p>
+        <h2>
+          Your business could
+          <br />
+          <span>be next.</span>
+        </h2>
+        <Link className="button button-primary" to="/#contact">
+          Start a conversation <Arrow />
+        </Link>
       </section>
     </main>
   );
 }
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [introComplete, setIntroComplete] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    document.body.classList.toggle("menu_is_open", menuOpen);
+    return () => document.body.classList.remove("menu_is_open");
+  }, [menuOpen]);
+
+  useEffect(() => {
     document.title = pageTitles[location.pathname] ?? pageTitles["/"];
+    if (location.hash) {
+      window.setTimeout(() => {
+        document.querySelector(location.hash)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 80);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reducedMotion) {
+      setIntroComplete(true);
+      return undefined;
+    }
+    const timer = window.setTimeout(() => setIntroComplete(true), 1700);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add("motion-ready");
+
+    const updateReveals = () => {
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const revealItems = document.querySelectorAll("[data-reveal]:not(.is-visible)");
+
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return undefined;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
+      );
+      revealItems.forEach((item) => observer.observe(item));
+      return observer;
+    };
+
+    const observer = updateReveals();
+    return () => {
+      observer?.disconnect();
+      root.classList.remove("motion-ready");
+    };
   }, [location.pathname]);
 
   return (
     <>
-      <ScrollManager />
-      <a className="skip-link" href="#main">Skip to content</a>
-      <Header />
+      {!introComplete && (
+        <div className="intro-curtain" aria-hidden="true">
+          <div className="curtain-panel" />
+          <div className="curtain-panel" />
+          <div className="curtain-panel" />
+          <div className="curtain-panel" />
+          <div className="curtain-logo">
+            <img src="/wingerworth-code-logo.png" alt="" />
+          </div>
+        </div>
+      )}
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -515,6 +475,9 @@ function App() {
         <Route path="*" element={<HomePage />} />
       </Routes>
       <Footer />
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
     </>
   );
 }
