@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" fill="none">
   <rect width="42" height="42" rx="8" fill="#111110"/>
-  <g stroke="#ff7518" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
+  <g stroke="#f36b13" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
     <path d="m13 8-7 11 7 9m16-20 7 11-7 9"/>
   </g>
-  <image href="/crooked-spire-orange.png" x="16" y="4" width="10" height="34" preserveAspectRatio="xMidYMid meet"/>
+  <image href="/crooked-spire-mark.png" x="16" y="4" width="10" height="34" preserveAspectRatio="xMidYMid meet"/>
 </svg>

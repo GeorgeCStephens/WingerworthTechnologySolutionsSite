@@ -4,6 +4,15 @@ A responsive React website for Josh and George's Chesterfield-based technology
 business. It uses Vite for development and production builds, React for the
 component UI, and React Router for the Home, About, and Some of our work pages.
 
+## Project structure
+
+- `src/App.jsx` contains shared site components and the three route pages.
+- `src/styles.css` contains global styles, page layouts, responsive rules, and
+  motion effects.
+- `chesterfield-stag.svg` is the geometric stag illustration used in the home
+  page hero.
+- `public/` contains the Crooked Spire logo assets and exported logo images.
+
 ## Run locally
 
 Install dependencies and start the Vite development server:
@@ -31,5 +40,6 @@ npm run preview
 4. Add the final website domain to metadata when it is chosen.
 
 The site uses a native system-font stack, animated CSS details, and respects
-reduced-motion preferences. The header and favicon use a transparent orange
-cutout of Chesterfield’s Crooked Spire inside the code-bracket mark.
+reduced-motion preferences. The home-page hero uses the geometric
+`chesterfield-stag.svg` illustration. The header and favicon use a Crooked Spire
+cutout inside the code-bracket mark.

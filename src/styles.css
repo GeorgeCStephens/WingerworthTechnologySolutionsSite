@@ -8,7 +8,6 @@
   --paper: #f5f3ed;
   --paper-deep: #ebe8df;
   --ink: #171716;
-  --ink-soft: #44433f;
   --muted: #77756e;
   --line: rgba(23, 23, 22, 0.14);
   --black: #111110;
@@ -17,6 +16,7 @@
   --content: 1160px;
 }
 
+/* Shared box sizing keeps component dimensions predictable. */
 * {
   box-sizing: border-box;
 }
@@ -84,6 +84,7 @@ textarea:focus-visible {
   transform: translateY(0);
 }
 
+/* Site header, brand mark, and desktop navigation. */
 .site-header {
   position: absolute;
   z-index: 20;
@@ -231,6 +232,7 @@ button:hover .arrow-icon {
   display: none;
 }
 
+/* Home-page hero and its decorative stag illustration. */
 .hero {
   position: relative;
   display: flex;
@@ -317,7 +319,13 @@ button:hover .arrow-icon {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(90deg, var(--black) 0%, rgba(17, 17, 16, 0.96) 34%, rgba(17, 17, 16, 0.46) 67%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    var(--black) 0%,
+    rgba(17, 17, 16, 0.96) 34%,
+    rgba(17, 17, 16, 0.46) 67%,
+    transparent 100%
+  );
 }
 
 .hero-content {
@@ -443,44 +451,7 @@ p {
   background: var(--orange);
 }
 
-.scroll-cue {
-  position: absolute;
-  bottom: 27px;
-  left: max(32px, calc((100% - var(--content)) / 2));
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #797872;
-  font-size: 9px;
-  text-decoration: none;
-}
-
-.scroll-line {
-  width: 31px;
-  height: 1px;
-  background: var(--orange);
-  transform-origin: left;
-  animation: line-breathe 2.5s ease-in-out infinite;
-}
-
-.hero-index {
-  position: absolute;
-  right: max(32px, calc((100% - var(--content)) / 2));
-  bottom: 27px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #797872;
-  font-size: 9px;
-  letter-spacing: 1px;
-}
-
-.hero-index span {
-  width: 34px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.24);
-}
-
+/* Introductory content and links to the site's main sections. */
 .intro-section {
   display: grid;
   width: min(var(--content), calc(100% - 64px));
@@ -564,6 +535,7 @@ p {
   color: #77756e;
 }
 
+/* Contact form, footer, and shared form feedback. */
 .contact-section {
   padding: 104px 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -681,6 +653,7 @@ p {
   font-size: 9px;
 }
 
+/* About and portfolio page layouts. */
 .inner-page {
   min-height: 70vh;
   padding-top: 76px;
@@ -825,6 +798,7 @@ p {
   transform: rotate(45deg);
 }
 
+/* Portfolio card labels and the closing contact prompt. */
 .portfolio-meta {
   display: flex;
   justify-content: space-between;
@@ -870,6 +844,7 @@ p {
   justify-content: center;
 }
 
+/* Reveal-on-scroll transition; reduced-motion users see content immediately. */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -931,18 +906,7 @@ p {
   }
 }
 
-@keyframes line-breathe {
-  0%,
-  100% {
-    transform: scaleX(0.7);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
+/* Tablet adjustments preserve the two-column layouts where space allows. */
 @media (max-width: 900px) {
   .site-header {
     padding-inline: 22px;
@@ -976,7 +940,13 @@ p {
   }
 
   .hero-shade {
-    background: linear-gradient(90deg, var(--black) 0%, rgba(17, 17, 16, 0.94) 40%, rgba(17, 17, 16, 0.45) 76%, rgba(17, 17, 16, 0.1));
+    background: linear-gradient(
+      90deg,
+      var(--black) 0%,
+      rgba(17, 17, 16, 0.94) 40%,
+      rgba(17, 17, 16, 0.45) 76%,
+      rgba(17, 17, 16, 0.1)
+    );
   }
 
   .hero-glow-one {
@@ -985,14 +955,6 @@ p {
 
   .hero-glow-two {
     right: 7%;
-  }
-
-  .scroll-cue {
-    left: 36px;
-  }
-
-  .hero-index {
-    right: 36px;
   }
 
   .intro-section {
@@ -1016,6 +978,7 @@ p {
   }
 }
 
+/* Mobile navigation and single-column page layouts. */
 @media (max-width: 640px) {
   html {
     scroll-padding-top: 76px;
@@ -1172,7 +1135,13 @@ p {
   }
 
   .hero-shade {
-    background: linear-gradient(180deg, var(--black) 0%, rgba(17, 17, 16, 0.97) 42%, rgba(17, 17, 16, 0.68) 68%, rgba(17, 17, 16, 0.03) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--black) 0%,
+      rgba(17, 17, 16, 0.97) 42%,
+      rgba(17, 17, 16, 0.68) 68%,
+      rgba(17, 17, 16, 0.03) 100%
+    );
   }
 
   .hero-glow-one {
@@ -1185,16 +1154,6 @@ p {
     top: 54%;
     right: -20%;
     width: 210px;
-  }
-
-  .scroll-cue {
-    bottom: 21px;
-    left: 24px;
-  }
-
-  .hero-index {
-    right: 24px;
-    bottom: 21px;
   }
 
   .intro-section,
@@ -1312,6 +1271,7 @@ p {
   }
 }
 
+/* Honour operating-system motion preferences for all animated elements. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
