@@ -69,7 +69,6 @@ function Header({ menuOpen, setMenuOpen }) {
               <div className="links_group">
                 <h2>WHO WE ARE</h2>
                 <NavLink to="/about">About us</NavLink>
-                <NavLink to="/about">Our approach</NavLink>
               </div>
             </nav>
           </div>
